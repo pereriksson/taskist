@@ -1,0 +1,33 @@
+header {
+    background: #DB4C3F;
+    padding: 0.8rem;
+    display: flex;
+    gap: 0.9rem;
+}
+
+header span {
+    display: inline-block;
+    height: 1rem;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    height: 1rem;
+}
+
+header span.logo {
+    margin: -2px 0;
+    font-size: 1.2rem;
+}
+
+header button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+header span a.add {
+    background: url(../images/plus.svg);
+    border: 0;
+    display: inline-block;
+    width: 1rem;
+}
