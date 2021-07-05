@@ -54,6 +54,11 @@ class Item
      */
     private $children;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $done;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -162,6 +167,18 @@ class Item
                 $child->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDone(): ?bool
+    {
+        return $this->done;
+    }
+
+    public function setDone(bool $done): self
+    {
+        $this->done = $done;
 
         return $this;
     }
