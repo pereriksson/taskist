@@ -59,9 +59,15 @@ class Item
      */
     private $done;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="items")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,6 +185,30 @@ class Item
     public function setDone(bool $done): self
     {
         $this->done = $done;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }
