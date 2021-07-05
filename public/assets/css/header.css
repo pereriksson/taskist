@@ -16,6 +16,18 @@ header a {
     height: 1rem;
 }
 
+header span.icon {
+    margin-top: -0.1rem;
+}
+
+header span.icon a {
+    background: url(../icons/favicon.svg) no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
 header span.logo {
     margin: -2px 0;
     font-size: 1.2rem;

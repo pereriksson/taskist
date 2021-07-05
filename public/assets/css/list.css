@@ -1,0 +1,62 @@
+.circle {
+    border-radius: 50%;
+    border: 1px solid rgb(128, 128, 128);
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.circle:hover {
+    background: rgb(200, 200, 200);
+}
+
+.task {
+    display: flex;
+}
+
+.task button {
+    border: 0;
+    background: transparent;
+}
+
+.check {
+    height: 2.4rem;
+}
+
+.task p {
+    font-size: 0.875rem;
+}
+
+.additional-information {
+    color: #707070;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.additional-information .label {
+    margin-right: 0.8rem;
+}
+
+.responsible {
+    background: url(../icons/person.svg) no-repeat;
+    background-position-y: -0.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+}
+
+.project {
+    background: url(../icons/project.svg) no-repeat;
+    background-size: 1.3rem 1.3rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+}
+
+.deadline {
+    background: url(../icons/calendar.svg) no-repeat;
+    background-size: 1.1rem 1.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+}
