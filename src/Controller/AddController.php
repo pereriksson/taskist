@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 class AddController extends AbstractController
 {
@@ -56,7 +57,7 @@ class AddController extends AbstractController
 
         if ($request->get("deadline")) {
             try {
-                $item->setDeadline(new \DateTime($request->get("deadline")));
+                $item->setDeadline(new DateTime($request->get("deadline")));
             } catch (\Exception $e) {
                 // Date could not be parsed, ignore
             }
@@ -83,9 +84,11 @@ class AddController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Tag::class);
         $tags = $request->get("tags");
 
-        foreach ($tags as $tag) {
-            $tag = $repo->find((int) $tag);
-            $item->addTag($tag);
+        if ($tags and count($tags) > 0) {
+            foreach ($tags as $tag) {
+                $tag = $repo->find((int) $tag);
+                $item->addTag($tag);
+            }
         }
 
         // Save
