@@ -1,0 +1,38 @@
+<ul>
+    {% for item in items %}
+        <li>
+            <div class="task">
+                <button class="check">
+                    <div class="circle"></div>
+                </button>
+                <div class="item-info">
+                    <p>{{ item.title }}</p>
+                    {% if item.responsible or item.project or item.deadline %}
+                        <div class="additional-information">
+                            {% if item.responsible %}
+                                <span class="responsible"></span>
+                                <span class="label">{{ item.responsible.name }}</span>
+                            {% endif %}
+
+                            {% if item.project %}
+                                <span class="project"></span>
+                                <span class="label">{{ item.project.name }}</span>
+                            {% endif %}
+
+                            {% if item.deadline %}
+                                <span class="deadline"></span>
+                                <span class="label">{{ item.deadline|date("Y-m-d") }}</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    {% if item.children.count > 0 %}
+                        <div class="children">
+                            {% include 'components/list.twig' with {"items": item.children} %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

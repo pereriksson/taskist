@@ -5,17 +5,22 @@
     <title>{{ title }} | Taskist</title>
     <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}"/>
     <link rel="stylesheet" href="{{ asset("assets/css/header.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("assets/css/add.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("assets/css/list.css") }}"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png"/>
 </head>
 
 <body>
 <header>
+    <span class="icon"><a href="{{ url("home") }}"></a></span>
     <span class="logo"><a href="{{ url("home") }}">taskist</a></span>
     <span><a href="{{ url("add") }}" class="add"></a></span>
 </header>
 
 <main>
-    {% include component %}
+    <section>
+        {% include component %}
+    </section>
 </main>
 
 <script src="{{ asset("assets/js/taskist.js") }}"></script>
