@@ -27,12 +27,18 @@ class AddController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Project::class);
         $projects = $repository->findAll();
 
+        $repository = $this->getDoctrine()->getRepository(Item::class);
+        $items = $repository->findBy([
+            "done" => false
+        ]);
+
         return $this->render('index.twig', [
             "title" => "Add a todo",
             "navItems" => [],
             "people" => $people,
             "tags" => $tags,
             "projects" => $projects,
+            "items" => $items,
             "component" => "components/add.twig"
         ]);
     }
@@ -66,6 +72,12 @@ class AddController extends AbstractController
             $repo = $this->getDoctrine()->getRepository(Person::class);
             $responsible = $repo->find($request->get("responsible"));
             $item->setResponsible($responsible);
+        }
+
+        if ($request->get("parent")) {
+            $repo = $this->getDoctrine()->getRepository(Item::class);
+            $parent = $repo->find($request->get("parent"));
+            $item->setParent($parent);
         }
 
         // Require a title

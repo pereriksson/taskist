@@ -26,6 +26,14 @@
         {% endfor %}
     </select>
 
+    <h2>Belongs to</h2>
+    <select name="parent">
+        <option value=""></option>
+        {% for item in items %}
+            <option value="{{ item.id }}">{{ item.title }}</option>
+        {% endfor %}
+    </select>
+
     <h2>Tags</h2>
     {% for tag in tags %}
         <input type="checkbox" name="tags[{{ tag.id }}]" id="tag_{{ tag.id }}" value="{{ tag.id }}"/>
