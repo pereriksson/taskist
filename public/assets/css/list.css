@@ -60,3 +60,11 @@
     height: 1.5rem;
     display: inline-block;
 }
+
+.tag {
+    background: url(../icons/tag.svg) no-repeat;
+    background-size: 1.1rem 1.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+}

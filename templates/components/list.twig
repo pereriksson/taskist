@@ -2,12 +2,16 @@
     {% for item in items %}
         <li>
             <div class="task">
-                <button class="check">
-                    <div class="circle"></div>
-                </button>
+                <form method="post">
+                    <input type="hidden" name="action" value="done"/>
+                    <input type="hidden" name="id" value="{{ item.id }}"/>
+                    <button class="check">
+                        <div class="circle"></div>
+                    </button>
+                </form>
                 <div class="item-info">
                     <p>{{ item.title }}</p>
-                    {% if item.responsible or item.project or item.deadline %}
+                    {% if item.responsible or item.project or item.deadline or item.tags %}
                         <div class="additional-information">
                             {% if item.responsible %}
                                 <span class="responsible"></span>
@@ -22,6 +26,13 @@
                             {% if item.deadline %}
                                 <span class="deadline"></span>
                                 <span class="label">{{ item.deadline|date("Y-m-d") }}</span>
+                            {% endif %}
+
+                            {% if item.tags.count > 0 %}
+                                {% for tag in item.tags %}
+                                    <span class="tag"></span>
+                                    <span class="label">{{ tag.name }}</span>
+                                {% endfor %}
                             {% endif %}
                         </div>
                     {% endif %}

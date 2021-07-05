@@ -80,7 +80,15 @@ class AddController extends AbstractController
             $item->setParent($parent);
         }
 
-        // Require a title
+        $repo = $this->getDoctrine()->getRepository(Tag::class);
+        $tags = $request->get("tags");
+
+        foreach ($tags as $tag) {
+            $tag = $repo->find((int) $tag);
+            $item->addTag($tag);
+        }
+
+        // Save
         if ($item->getTitle()) {
             $manager->persist($item);
             $manager->flush();
