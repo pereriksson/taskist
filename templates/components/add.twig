@@ -1,1 +1,37 @@
 <h1>Add a todo</h1>
+
+<form method="post">
+    <h2>Title</h2>
+    <input type="text" name="title"/>
+
+    <h2>Description</h2>
+    <textarea name="description"></textarea>
+
+    <h2>Deadline</h2>
+    <input type="text" name="deadline" placeholder="yyyy-mm-dd"/>
+
+    <h2>Responsible</h2>
+    <select name="responsible">
+        <option value=""></option>
+        {% for person in people %}
+            <option value="{{ person.id }}">{{ person.name }}</option>
+        {% endfor %}
+    </select>
+
+    <h2>Project</h2>
+    <select name="project">
+        <option value=""></option>
+        {% for project in projects %}
+            <option value="{{ project.id }}">{{ project.name }}</option>
+        {% endfor %}
+    </select>
+
+    <h2>Tags</h2>
+    {% for tag in tags %}
+        <input type="checkbox" name="tags[{{ tag.id }}]" id="tag_{{ tag.id }}" value="{{ tag.id }}"/>
+        <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+    {% endfor %}
+    <p>
+        <input type="submit" value="Create todo"/>
+    </p>
+</form>
