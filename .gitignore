@@ -1,3 +1,5 @@
+.env.student
+.idea/
 
 ###> symfony/framework-bundle ###
 /.env.local
