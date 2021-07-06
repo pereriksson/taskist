@@ -14,6 +14,8 @@ use DateTime;
 
 class AddController extends AbstractController
 {
+    private $item;
+
     /**
      * @Route("/add", name="add", methods={"GET"})
      */
@@ -50,14 +52,14 @@ class AddController extends AbstractController
     public function process(Request $request): Response
     {
         $manager = $this->getDoctrine()->getManager();
-        $item = new Item();
-        $item->setDone(false);
-        $item->setTitle($request->get("title"));
-        $item->setDescription($request->get("description"));
+        $this->item = new Item();
+        $this->item->setDone(false);
+        $this->item->setTitle($request->get("title"));
+        $this->item->setDescription($request->get("description"));
 
         if ($request->get("deadline")) {
             try {
-                $item->setDeadline(new DateTime($request->get("deadline")));
+                $this->item->setDeadline(new DateTime($request->get("deadline")));
             } catch (\Exception $e) {
                 // Date could not be parsed, ignore
             }
@@ -66,37 +68,42 @@ class AddController extends AbstractController
         if ($request->get("project")) {
             $repo = $this->getDoctrine()->getRepository(Project::class);
             $project = $repo->find($request->get("project"));
-            $item->setProject($project);
+            $this->item->setProject($project);
         }
 
         if ($request->get("responsible")) {
             $repo = $this->getDoctrine()->getRepository(Person::class);
             $responsible = $repo->find($request->get("responsible"));
-            $item->setResponsible($responsible);
+            $this->item->setResponsible($responsible);
         }
 
         if ($request->get("parent")) {
             $repo = $this->getDoctrine()->getRepository(Item::class);
             $parent = $repo->find($request->get("parent"));
-            $item->setParent($parent);
+            $this->item->setParent($parent);
         }
 
+        $this->addTags($request);
+
+        // Save
+        if ($this->item->getTitle()) {
+            $manager->persist($this->item);
+            $manager->flush();
+        }
+
+        return $this->redirectToRoute("home");
+    }
+
+    private function addTags(Request $request)
+    {
         $repo = $this->getDoctrine()->getRepository(Tag::class);
         $tags = $request->get("tags");
 
         if ($tags and count($tags) > 0) {
             foreach ($tags as $tag) {
                 $tag = $repo->find((int) $tag);
-                $item->addTag($tag);
+                $this->item->addTag($tag);
             }
         }
-
-        // Save
-        if ($item->getTitle()) {
-            $manager->persist($item);
-            $manager->flush();
-        }
-
-        return $this->redirectToRoute("home");
     }
 }
