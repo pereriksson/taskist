@@ -15,11 +15,15 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Item::class);
-        $items = $repo->findBy([
-            "parent" => null,
-            "done" => false
-        ]);
+        $items = [];
+        
+        if ($this->getParameter('DATABASE_URL')) {
+            $repo = $this->getDoctrine()->getRepository(Item::class);
+            $items = $repo->findBy([
+                "parent" => null,
+                "done" => false
+            ]);
+        }
 
         return $this->render('index.twig', [
             "title" => "Home",
