@@ -2,6 +2,8 @@
 
 A todo application.
 
+[![Build Status](https://travis-ci.com/pereriksson/taskist.svg?branch=master)](https://travis-ci.com/pereriksson/taskist)
+
 ## Introduction
 
 This is a simple but effective todo application made to demonstrate the Symfony framework with Doctrine. It provides basic functionality to add todo items in a hierarchy fashion, annotated with a responsible, deadline, responsibles, projects, tags and more.
