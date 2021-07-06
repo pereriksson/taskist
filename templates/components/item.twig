@@ -1,0 +1,14 @@
+<h1>{{ item.title }}</h1>
+
+<h2>Comments</h2>
+
+{% for comment in item.comments %}
+<p>{{ comment.description }}</p>
+{% endfor %}
+
+<h2>Add a comment</h2>
+<form method="post" action="{{ url("add_comment") }}">
+    <input type="hidden" name="id" value="{{ item.id }}"/>
+    <textarea name="description"></textarea>
+    <input type="submit" value="Save comment"/>
+</form>

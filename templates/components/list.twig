@@ -12,31 +12,31 @@
                     </form>
                     <div class="item-info">
                         <p>{{ item.title }}</p>
-                        {% if item.responsible or item.project or item.deadline or item.tags %}
-                            <div class="additional-information">
-                                {% if item.responsible %}
-                                    <span class="responsible"></span>
-                                    <span class="label">{{ item.responsible.name }}</span>
-                                {% endif %}
+                        <div class="additional-information">
+                            {% if item.responsible %}
+                                <span class="responsible"></span>
+                                <span class="label">{{ item.responsible.name }}</span>
+                            {% endif %}
 
-                                {% if item.project %}
-                                    <span class="project"></span>
-                                    <span class="label">{{ item.project.name }}</span>
-                                {% endif %}
+                            {% if item.project %}
+                                <span class="project"></span>
+                                <span class="label">{{ item.project.name }}</span>
+                            {% endif %}
 
-                                {% if item.deadline %}
-                                    <span class="deadline"></span>
-                                    <span class="label">{{ item.deadline|date("Y-m-d") }}</span>
-                                {% endif %}
+                            {% if item.deadline %}
+                                <span class="deadline"></span>
+                                <span class="label">{{ item.deadline|date("Y-m-d") }}</span>
+                            {% endif %}
 
-                                {% if item.tags.count > 0 %}
-                                    {% for tag in item.tags %}
-                                        <span class="tag"></span>
-                                        <span class="label">{{ tag.name }}</span>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        {% endif %}
+                            {% if item.tags.count > 0 %}
+                                {% for tag in item.tags %}
+                                    <span class="tag"></span>
+                                    <span class="label">{{ tag.name }}</span>
+                                {% endfor %}
+                            {% endif %}
+
+                            <a href="{{ url("item", {"id": item.id}) }}">Add a comment</a>
+                        </div>
 
                         {% if item.children.count > 0 %}
                             <div class="children">

@@ -18,6 +18,10 @@
     background: transparent;
 }
 
+.task a {
+    color: #707070;
+}
+
 .check {
     height: 2.4rem;
 }
