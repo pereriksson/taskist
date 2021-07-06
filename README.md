@@ -32,6 +32,14 @@ insert into project values(null, "Renovating the house");
 insert into project values(null, "Finding a new car");
 ```
 
+## Testing
+
+Tests can be run by running:
+
+```shell
+make test
+```
+
 ## Contributing
 
 This repository may be forked by anyone. Please speak to the author for original contributions.
