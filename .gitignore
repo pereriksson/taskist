@@ -2,6 +2,7 @@
 .idea/
 .DS_Store
 .bin/
+build/
 
 ###> symfony/framework-bundle ###
 /.env.local
