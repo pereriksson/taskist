@@ -1,6 +1,7 @@
 .env.student
 .idea/
 .DS_Store
+.bin/
 
 ###> symfony/framework-bundle ###
 /.env.local
