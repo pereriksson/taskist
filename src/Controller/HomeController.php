@@ -16,8 +16,8 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $items = [];
-        
-        if ($this->getParameter('DATABASE_URL')) {
+
+        if ($_ENV["DATABASE_URL"]) {
             $repo = $this->getDoctrine()->getRepository(Item::class);
             $items = $repo->findBy([
                 "parent" => null,
