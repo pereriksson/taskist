@@ -23,6 +23,11 @@ class Comment
      */
     private $item;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +41,18 @@ class Comment
     public function setItem(?Item $item): self
     {
         $this->item = $item;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
