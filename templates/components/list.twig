@@ -1,3 +1,4 @@
+{% if items|length > 0 %}
 <ul>
     {% for item in items %}
         {% if not item.done %}
@@ -20,7 +21,7 @@
 
                             {% if item.project %}
                                 <span class="project"></span>
-                                <span class="label">{{ item.project.name }}</span>
+                                <span class="label"><a href="{{ url("project", {"projectId": item.project.id}) }}">{{ item.project.name }}</a></span>
                             {% endif %}
 
                             {% if item.deadline %}
@@ -49,3 +50,6 @@
         {% endif %}
     {% endfor %}
 </ul>
+{% else %}
+    <p>No items could be found.</p>
+{% endif %}
