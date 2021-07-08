@@ -1,6 +1,6 @@
 <h1>
     <span>Items</span>
-    <small>13 May</small>
+    <small>{{ "now"|date("j F") }}</small>
 </h1>
 
 {% include 'components/list.twig' with {"items": items} %}
