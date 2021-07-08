@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ItemController extends AbstractController
 {
     /**
-     * @Route("/item/{id}", name="item", methods={"GET"})
+     * @Route("/item/{itemId}", name="item", methods={"GET"})
      */
     public function itemDetails(int $itemId): Response
     {
