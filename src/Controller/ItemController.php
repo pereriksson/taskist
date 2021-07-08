@@ -4,26 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Item;
-use App\Entity\Person;
-use App\Entity\Project;
-use App\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use DateTime;
 
 class ItemController extends AbstractController
 {
-    private $item;
-
     /**
      * @Route("/item/{id}", name="item", methods={"GET"})
      */
-    public function itemDetails(int $id): Response
+    public function itemDetails(int $itemId): Response
     {
         $repository = $this->getDoctrine()->getRepository(Item::class);
-        $item = $repository->find($id);
+        $item = $repository->find($itemId);
 
         return $this->render('index.twig', [
             "title" => "Item",
