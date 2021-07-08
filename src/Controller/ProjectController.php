@@ -36,7 +36,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/project/{projectId}", name="process", methods={"POST"})
+     * @Route("/project/{projectId}", name="processProject", methods={"POST"})
      */
     public function process(Request $request, int $projectId): Response
     {
