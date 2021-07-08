@@ -36,7 +36,7 @@
                                 {% endfor %}
                             {% endif %}
 
-                            <a href="{{ url("item", {"id": item.id}) }}">Add a comment</a>
+                            <a href="{{ url("item", {"itemId": item.id}) }}">Add a comment</a>
                         </div>
 
                         {% if item.children.count > 0 %}
